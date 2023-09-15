@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Cafe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</head>
+<body>
+<div th:insert="~{fragments/header :: header}"></div>
+
+
+<div class="container">
+    <h1 class="display-6">Welcome to Kafe</h1>
+
+
+    <p><span th:text="${greeting}"></span></p>
+
+
+    <div id="success-msg" class="alert alert-success"
+         th:if="${confirmOrder}">
+        Your order has been successfully submitted !
+    </div>
+
+
+    <div sec:authorize="isAuthenticated()">
+        <p>Khun <b><span sec:authentication="name"></span></b></p>
+        <a class="btn btn-primary" th:href="@{/logout}">Logout</a>
+    </div>
+    <div sec:authorize="isAnonymous()">
+        <a class="btn btn-primary" th:href="@{/login}">Login</a>
+        <a class="btn btn-light" th:href="@{/signup}">Sign Up</a>
+    </div>
+
+
+</div>
+</body>
+</html>
